@@ -1,6 +1,110 @@
-map  
-map!  
+" filetypeの自動検出をしないようになる(最初に書いておいて最後で検出する)
+filetype off
+
+"""""""""""""""""""""""""
+" pluginのセットアップ
+"""""""""""""""""""""""""
+if has('vim_starting')  "vim起動時のみ実行したい部分
+    "runtimepath内の特定のファイルが順繰り読み込まれる
+    set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim   
+endif
+
+"neobundle.vimの初期化
+"expand()を通さないと散るだが展開されずに文字列として解釈される
+"callは戻り値を無視して定義した関数を読み込む
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" :NeoBundleコマンドはプラグインをneobundle.vimに登録する
+" :NeoBundleコマンドだけではinstallされないので:NeoBundleInstallする
+
+" ファイルオープンを便利に(unite走査ができるようになる)
+NeoBundle 'Shougo/unite.vim'
+" 非同期処理ができるようになる
+NeoBundle 'Shougo/vimproc'
+" ファイルをtree表示してくれる
+NeoBundle 'scrooloose/nerdtree'
+" インデントに色を付けて見やすくする
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" ファイルをtree表示してくれる
+NeoBundle 'scrooloose/nerdtree'
+" コメント入力を便利に
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+"""""""""""""""""""""""""
+" vim-indent-guidesの設定
+"""""""""""""""""""""""""
+" Vim 起動時 vim-indent-guides を自動起動
+let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=2
+" 自動カラー無効
+let g:indent_guides_auto_colors=0
+" 奇数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=32
+" 偶数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=23
+" ガイドの幅
+let g:indent_guides_guide_size = 1
+
+"""""""""""""""""""""""""
+" 各種オプションの設定
+"""""""""""""""""""""""""
+" color schemaの設定
 colorscheme molokai
+" 構文ごとに文字色を変化させる
 syntax on
+" 行番号を表示する
 set number
+" 改行前に前の行のインデントを継続する
 set autoindent
+" スワップファイルは使わない(ときどき面倒な警告が出るだけで役に立ったことがない)
+set noswapfile
+" カーソルが何行目の何列目に置かれているかを表示する
+set ruler
+" ウインドウのタイトルバーにファイルのパス情報等を表示する
+set title
+
+" 以下三つを設定しないとindentを色分けできない
+" タブ文字の表示幅
+set tabstop=4
+" Vimが挿入するインデントの幅
+set shiftwidth=4
+" タブ入力を複数の空白入力に置き換える
+set expandtab
+
+""""""""""""""""""""""""""""""
+" 自動的に閉じ括弧を入力
+""""""""""""""""""""""""""""""
+imap { {}<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
+
+""""""""""""""""""""""""""""""
+" 最後のカーソル位置を復元する
+" """"""""""""""""""""""""""""""
+if has("autocmd")
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal! g'\"" |
+    \ endif
+endif
+
+"""""""""""""""""""""""""
+" localのセットアップ
+"""""""""""""""""""""""""
+" ローカルな設定を分けるためにvim_localを読み込む
+" $HOME/.localsetting/vimrc_localが読み込まれる
+if filereadable(expand('$HOME/.localsetting/vimrc_local'))
+    source $HOME/.localsetting/vimrc_local
+endif
+
+" filetypeの自動検出(最後の方に書いた方がいいらしい)
+filetype on

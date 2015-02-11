@@ -1,3 +1,5 @@
+https://github.com/arana0/dotfiles
+
 git init
     .gitなどを作成しバージョン管理をできるようにする
 
@@ -9,11 +11,14 @@ git commit -m "message"
     変更を(localに)記録する
     -m "message"はしていしないといけない
 
-git remote add origin https://github.com/user_name/repository
-    originをhttps://github.com/user_name/repositoryに保存する
-    originはただの名前だが通常はoriginになっているらしい
+git remote add origin <URL>
+    <URL>に"origin"というニックネームをつける
+    別にニックネームをつけなくても良い
+    慣習的にoriginが使われる
 
 git push -u origin master
-    originをbranch masterとしてネット上にアップする
-    masterはただのbranch名だが通常はmasterになっているらしい
-    
+    push : アップロード
+    origin : URL(リモートのサーバ名)
+    master : defaultのbranch名
+    ローカルのコードを、originというリモートサーバに対してアップロードせよ。指定するブランチはmasterである。
+    -uを使っているがmasterをpushするときは不要
