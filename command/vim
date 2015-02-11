@@ -1,0 +1,15 @@
+tab -> space
+    :set expandtab
+    :retab
+space -> tab
+    :set noexpandtab
+    :retab!
+
+unite.vim
+    http://d.hatena.ne.jp/osyo-manga/20130307/1362621589
+
+NERDTree
+    :NERDTreeというコマンドで可憐とディレクトリをツリー表示できる
+    http://qiita.com/zwirky/items/0209579a635b4f9c95ee
+
+
