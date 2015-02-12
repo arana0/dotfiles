@@ -6,11 +6,11 @@ filetype off
 """""""""""""""""""""""""
 if has('vim_starting')  "vim起動時のみ実行したい部分
     "runtimepath内の特定のファイルが順繰り読み込まれる
-    set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim   
+    set runtimepath+=~/dotfiles/.vim/bundle/neobundle.vim/
 endif
 
 "neobundle.vimの初期化
-"expand()を通さないと散るだが展開されずに文字列として解釈される
+"expand()を通さないとチルダが展開されずに文字列として解釈される
 "callは戻り値を無視して定義した関数を読み込む
 call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -31,7 +31,11 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " ファイルをtree表示してくれる
 NeoBundle 'scrooloose/nerdtree'
-" コメント入力を便利に
+" コメントON/OFFを手軽に実行
+NeoBundle 'tomtom/tcomment_vim'
+
+" solarizedを使うため
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
@@ -57,10 +61,6 @@ let g:indent_guides_guide_size = 1
 """""""""""""""""""""""""
 " 各種オプションの設定
 """""""""""""""""""""""""
-" color schemaの設定
-colorscheme molokai
-" 構文ごとに文字色を変化させる
-syntax on
 " 行番号を表示する
 set number
 " 改行前に前の行のインデントを継続する
@@ -71,6 +71,10 @@ set noswapfile
 set ruler
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
+" プログラム入力時にインデントを自動で入力する
+set smartindent
+" 行を強調表示
+set cursorline
 
 " 以下三つを設定しないとindentを色分けできない
 " タブ文字の表示幅
@@ -81,6 +85,22 @@ set shiftwidth=4
 set expandtab
 
 """"""""""""""""""""""""""""""
+" color scheme
+""""""""""""""""""""""""""""""
+" 構文ごとに文字色を変化させる
+"syntax on
+" color schemaの設定
+"colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+syntax enable
+let g:solarized_termcolors=256
+set t_Co=256
+colorscheme solarized
+set background=dark
+" set background=light
+
+""""""""""""""""""""""""""""""
 " 自動的に閉じ括弧を入力
 """"""""""""""""""""""""""""""
 imap { {}<LEFT>
@@ -89,7 +109,7 @@ imap ( ()<LEFT>
 
 """"""""""""""""""""""""""""""
 " 最後のカーソル位置を復元する
-" """"""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 if has("autocmd")
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |

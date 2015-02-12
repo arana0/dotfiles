@@ -1,5 +1,8 @@
 #!/bin/bash
 
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/colors ~/.vim/colors
-#ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/colors ~/.vim/colors
+ln -sf ~/dotfiles/.bashrc ~/.bashrc
+ln -sf ~/dotfiles/.vim ~/.vim
+
+git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim

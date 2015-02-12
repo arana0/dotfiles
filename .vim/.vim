@@ -1,0 +1,1 @@
+/home/arai/dotfiles/.vim
