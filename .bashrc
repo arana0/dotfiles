@@ -210,14 +210,19 @@ to_trash(){
 	today=`date +%y%m%d`
 	for file in $@
 	do
-		mv $file ~/.trash/$today
+	    mv $file ~/.trash/$today
 	done
 }
 alias rm="to_trash"
 
+rm_exclude(){
+    targets=`ls | grep -v "$1"`
+    to_trash "$targets"
+}
+
 alias ls='ls --color=auto'
 cd_ls(){
-	cd $1
+	cd "$1"
 	ls
 }
 alias cd="cd_ls"
