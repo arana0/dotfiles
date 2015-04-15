@@ -22,3 +22,16 @@ git push -u origin master
     master : defaultのbranch名
     ローカルのコードを、originというリモートサーバに対してアップロードせよ。指定するブランチはmasterである。
     -uを使っているがmasterをpushするときは不要
+
+例えばこのdotfilesを更新するには
+cd ~/dotfiles
+1. 新しいファイルを追加していたときは
+    git add <new file>
+2. commitする
+    git commit -m "message"
+3. github(ネット上)にアップする
+    git push
+    必要であれば，username passwardを入力する
+
+このdotfilesをダウンロードするには
+git clone https://github.com/arana0/dotfiles
