@@ -139,6 +139,9 @@ nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 " バッファ一覧(:Unite buffer)
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+" NERDTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
 """"""""""""""""""""""""""""""
 " color scheme
 """"""""""""""""""""""""""""""

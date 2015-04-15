@@ -2,14 +2,56 @@
  unite.vim
  http://d.hatena.ne.jp/osyo-manga/20130307/1362621589
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:Uniteで始められる
+よく使うコマンドは
+    :Unite tab          -> sT
+    :Unite buffer_tab   -> sb
+    :Unite buffer       -> sB
+とすぐに実行できるようにしている
 
+カーソルを合わせたらTabでメニューが開ける
+メニュー中では
+<C-p>   下の候補に移動
+<C-n>   上の候補に移動
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  NERDTree
  ディレクトリをツリー表示できる
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:NERDTreeToggleで始められる(打つのめんどくさいので<C-e>でできるように.vimrcに記述している)
 
+O   再帰的にディレクトリを開く
+m   メニュー表示
+u   上の階層に移動
+P   ルートディレクトリへ移動
+p   親ディレクトリへ移動
+I   隠しファイルの表示非表示
+B   ブックマークの表示非表示
+
+ファイル操作
+o   ファイルを開く
+go  ファイルを開き，カーソルはツリーに保持
+t   タブで開く
+T   タブで開き，移動はしない
+i   水平分割して開く
+gi  水平分割して開き，移動はしない
+s   垂直分割して開く
+gs  垂直分割して開き，移動はしない
+
+
+~/.vim/nerdtree_plugin/yank_mapping.vimに以下を追加することで，pathをyyでコピーできるようになる
+call NERDTreeAddKeyMap({
+    \ 'key': 'yy',
+    \ 'callback': 'NERDTreeYankCurrentNode',
+    \ 'quickhelpText': 'put full path of current node into the default register' })
+
+function! NERDTreeYankCurrentNode()
+    let n = g:NERDTreeFileNode.GetSelected()
+    if n != {}
+        call setreg('"', n.path.str())
+    endif
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  tcomment_vim
