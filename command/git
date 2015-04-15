@@ -9,7 +9,7 @@ git add <file>
 
 git commit -m "message"
     変更を(localに)記録する
-    -m "message"はしていしないといけない
+    -m "message"は指定しないといけない
 
 git remote add origin <URL>
     <URL>に"origin"というニックネームをつける
