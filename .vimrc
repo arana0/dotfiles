@@ -84,6 +84,23 @@ set shiftwidth=4
 " タブ入力を複数の空白入力に置き換える
 set expandtab
 
+" Unite.vim
+" タブ一覧(:Unite tab)
+nnoremap sT :<C-u>Unite tab<CR>
+" 現在のタブで開いたバッファ一覧(:Unite buffer_tab)
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+" バッファ一覧(:Unite buffer)
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+" NERDTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+" 最後に残ったウィンドウがNERDTreeのみのときはvimを閉じる
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeDirArrows=0
+let g:NERDTreeMouseMode=0
+
+
 """"""""""""""""""""""""""""""
 " 画面分割・タブ
 """"""""""""""""""""""""""""""
@@ -130,17 +147,6 @@ nnoremap sp gT
 nnoremap sq :<C-u>q<CR>
 " バッファを閉じる(default:bd)
 nnoremap sQ :<C-u>bd<CR>
-
-" Unite.vim
-" タブ一覧(:Unite tab)
-nnoremap sT :<C-u>Unite tab<CR>
-" 現在のタブで開いたバッファ一覧(:Unite buffer_tab)
-nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
-" バッファ一覧(:Unite buffer)
-nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
-
-" NERDTree
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
 " color scheme
