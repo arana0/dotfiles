@@ -85,6 +85,61 @@ set shiftwidth=4
 set expandtab
 
 """"""""""""""""""""""""""""""
+" 画面分割・タブ
+""""""""""""""""""""""""""""""
+nnoremap s <Nop>
+" 水平分割(default:split)
+nnoremap ss :<C-u>sp<CR>
+" 垂直分割(default:vsplit)
+nnoremap sv :<C-u>vs<CR>
+
+" 分割ウィンドウ間を移動
+" 左に移動(default:<C-w>h)
+nnoremap sh <C-w>h
+" 下に移動(default:<C-w>j)
+nnoremap sj <C-w>j
+" 上に移動(default:<C-w>k)
+nnoremap sk <C-w>k
+" 右に移動(default:<C-w>l)
+nnoremap sl <C-w>l
+" 次に移動(default:<C-w>w)
+nnoremap sw <C-w>w
+
+" 分割ウィンドウそのものを移動
+" 左に移動(default:<C-w>H)
+nnoremap sH <C-w>H
+" 下に移動(default:<C-w>J)
+nnoremap sJ <C-w>J
+" 上に移動(default:<C-w>K)
+nnoremap sK <C-w>K
+" 右に移動(default:<C-w>L)
+nnoremap sL <C-w>L
+" 回転(default:<C-w>r)
+nnoremap sr <C-w>r
+
+" タブ
+" 新規タブ(default:tabnew)
+nnoremap st :<C-u>tabnew<CR>
+" 次のタブに切り替え(default:gt)
+nnoremap sn gt
+" 前のタブに切り替え(default:gT)
+nnoremap sp gT
+
+" 閉じる
+" ウィンドウを閉じる(default:q)
+nnoremap sq :<C-u>q<CR>
+" バッファを閉じる(default:bd)
+nnoremap sQ :<C-u>bd<CR>
+
+" Unite.vim
+" タブ一覧(:Unite tab)
+nnoremap sT :<C-u>Unite tab<CR>
+" 現在のタブで開いたバッファ一覧(:Unite buffer_tab)
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+" バッファ一覧(:Unite buffer)
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+""""""""""""""""""""""""""""""
 " color scheme
 """"""""""""""""""""""""""""""
 " 構文ごとに文字色を変化させる
