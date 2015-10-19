@@ -39,6 +39,10 @@ gi  水平分割して開き，移動はしない
 s   垂直分割して開く
 gs  垂直分割して開き，移動はしない
 
+m   メニューを表示する
+cd  選択したディレクトリをpwdにする
+CD  pwdに移動する
+:cd path    pathをpwdにする
 
 ~/.vim/nerdtree_plugin/yank_mapping.vimに以下を追加することで，pathをyyでコピーできるようになる
 call NERDTreeAddKeyMap({
