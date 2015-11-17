@@ -1,0 +1,42 @@
+gmx traj
+
+
+gmx distance
+
+残基間距離を測る(下の3つのCa間距離)
+
+TMD top     : GLN83 - ASN737    (.groでは 404 - 5066)   open時は2.475nm離れている
+ICL         : GLU251 - THR894   (.groでは 1720 - 6270)  open時は0.8051nm離れている
+sig-wakA 1  : GLY529 - SER1073  (.groでは 3883 - 7658)  open時は1.086nm離れている
+sig-wakA 2  : GLY1174 - SER430  (.groでは 8458 - 3095)
+
+- やり方 -
+index fileを作る
+    dist.ndx
+        [top_distance]
+        404 5066
+        [ICL]
+        1720 6270
+        [nbd1]
+        3883 7658
+        [nbd2]
+        8458 3095
+gmx distance -f ../traj_center.xtc -s ../run.tpr -n dist.ndx -oall dist.xvg
+    option
+    0 -> 1 -> 2 -> Ctrl-D
+
+見方
+超簡単
+    xmgrace -nxy .xvg
+画像で出力
+    gracebat -nxy .xvg -hdevice PNG -printfile .png
+
+もしくは．．．
+    xmgraceを起動
+    単純には複数データを表示できない
+    Data -> Import -> ASCll
+    一番下のSlectionで対象データを指定
+    Load as -> Block data
+    OK
+    Y from columnを2, 3, 4...などにしてApplyを押すとデータが出る
+
