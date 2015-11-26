@@ -224,7 +224,7 @@ alias ls='ls --color=auto'
 cd_ls(){
 	cd "$1"
 	ls
-}
+} 
 alias cd="cd_ls"
 
 alias vi='vim'
@@ -232,5 +232,4 @@ alias ll='ls -l'
 alias la='ls -all'
 alias ..='cd ..'
 alias ...='cd ../..'
-
 source ~/.localsetting/bashrc_local
