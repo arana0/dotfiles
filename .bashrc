@@ -197,20 +197,20 @@
 # 
 # alias cd=cd_func
 
-mkdir_data_inTrash(){
-	today=`date +%y%m%d`
-	if [ ! -e ~/.trash/$today ]; then
-		mkdir ~/.trash/$today
-	fi
-}
-
 #trash
 to_trash(){
-	mkdir_data_inTrash
 	today=`date +%y%m%d`
+	if [ ! -e ~/.trash/$today ]; then
+        mkdir ~/.trash/$today
+	fi
 	for file in $@
 	do
-	    mv $file ~/.trash/$today
+        newname=$file
+        while [ -e ~/.trash/$today/$newname ]
+        do
+            newname="${newname}x"
+        done
+        mv $file ~/.trash/$today/$newname
 	done
 }
 alias rm="to_trash"
