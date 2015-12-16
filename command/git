@@ -1,15 +1,31 @@
 https://github.com/arana0/dotfiles
 
+~/.gitconfigに自分の情報が書かれる
+[user]
+    email = 
+    name = 
+このemailとnameがgit commitしたときに追加される
+
+git filter-branch
+    今までのすべてをさかのぼって変更できる
+    詳細はhttp://am1tanaka.hatenablog.com/entry/2015/07/08/173643
+    filter.sh などを参照
+
 git init
     .gitなどを作成しバージョン管理をできるようにする
 
 git add <file>
     gitで管理するものに<file>を指定する
     .でディレクトリ以下すべてのファイル
+    また、commitの対象にするファイルを指定する意味もある
 
 git commit -m "message"
-    変更を(localに)記録する
+    変更を(localに)記録する(add で指定したもの)
     -m "message"は指定しないといけない
+
+git rm <file>
+    git上でファイルの削除をする
+    commitと合わせること
 
 git remote add origin <URL>
     <URL>に"origin"というニックネームをつける
@@ -35,3 +51,6 @@ cd ~/dotfiles
 
 このdotfilesをダウンロードするには
 git clone https://github.com/arana0/dotfiles
+
+git log
+    今まで何をしたかを表示できる
