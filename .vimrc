@@ -122,6 +122,11 @@ nnoremap sl <C-w>l
 " 次に移動(default:<C-w>w)
 nnoremap sw <C-w>w
 
+" 幅を増やす
+nnoremap s> <C-w>>
+" 幅を減らす
+nnoremap s< <C-w><
+
 " 分割ウィンドウそのものを移動
 " 左に移動(default:<C-w>H)
 nnoremap sH <C-w>H
@@ -181,6 +186,13 @@ if has("autocmd")
     \   exe "normal! g'\"" |
     \ endif
 endif
+
+
+" 検索ハイライト
+set hlsearch
+
+" ESC二回押しでハイライトをやめる
+nnoremap <ESC><ESC> :nohlsearch<CR>
 
 """""""""""""""""""""""""
 " localのセットアップ

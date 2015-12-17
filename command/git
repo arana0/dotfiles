@@ -1,15 +1,23 @@
 https://github.com/arana0/dotfiles
 
+このdotfilesをダウンロードするには
+git clone https://github.com/arana0/dotfiles
+
 git init
     .gitなどを作成しバージョン管理をできるようにする
 
 git add <file>
     gitで管理するものに<file>を指定する
     .でディレクトリ以下すべてのファイル
+    また、commitの対象にするファイルを指定する意味もある
 
 git commit -m "message"
-    変更を(localに)記録する
+    変更を(localに)記録する(add で指定したもの)
     -m "message"は指定しないといけない
+
+git rm <file>
+    git上でファイルの削除をする
+    commitと合わせること
 
 git remote add origin <URL>
     <URL>に"origin"というニックネームをつける
@@ -21,17 +29,71 @@ git push -u origin master
     origin : URL(リモートのサーバ名)
     master : defaultのbranch名
     ローカルのコードを、originというリモートサーバに対してアップロードせよ。指定するブランチはmasterである。
+    originはサーバを表す変数なので、代わりにリモートサーバを書いてもOK
+    masterは正式に書くとmaster:master = ローカルのmasterをリモートのmasterに反映させる
     -uを使っているがmasterをpushするときは不要
+
+    本当の形
+    git push <URL> master:master
 
 例えばこのdotfilesを更新するには
 cd ~/dotfiles
 1. 新しいファイルを追加していたときは
-    git add <new file>
+    git add <new file>   or    git add .
 2. commitする
     git commit -m "message"
 3. github(ネット上)にアップする
     git push
     必要であれば，username passwardを入力する
 
-このdotfilesをダウンロードするには
-git clone https://github.com/arana0/dotfiles
+git fetch
+    リモートからデータを取ってくる
+    取ってくるだけで何もしない
+
+A -> B -> C という変更があったとする(CはHEAD)
+1. PC1でCまで変更したのをpushした
+2. Bまでしか記録していないPC2でfetch
+とすると、PC2ではCの変更の記録はされるが、内容は更新されない
+例えばCで新たなファイルを追加しても、fetch後のPC2ではその変更があったことは知らされるが、ディレクトリ内にその新たなファイルが追加されることはない
+ここでgit statusとすると、Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+というようなコメントが出てくるはず
+git checkout origin/master とすれば最新の状態になる(PC2でもCの状態になる)
+
+
+git pull
+    リモートからデータを取ってきてmergeする
+
+用語
+working tree : 最新のファイルの状態
+index : コミットするためのファイルの状態 (add後commit前)
+local repository : ファイルの変更履歴を記録、手元で管理 (commit後)
+HEAD : 最新のcommitの状態
+remote repository : ファイルの変更履歴を記録、ネットで管理 (push後)
+
+
+git status
+    現在の作業情報を一覧できる
+
+git diff
+    ワーキングツリーとリポジトリとのファイルの差分、つまり修正の内容を確認することができる
+
+~/.gitconfigに自分の情報が書かれる
+[user]
+    email = 
+    name = 
+このemailとnameがgit commitしたときに追加される
+
+git filter-branch
+    今までのすべてをさかのぼって変更できる
+    詳細は
+        http://am1tanaka.hatenablog.com/entry/2015/07/08/173643
+        http://qiita.com/go_astrayer/items/6e39d3ab16ae8094496c
+        filter.sh
+    などを参照
+    履歴削除後もリポジトリに情報が残っている可能性があるので、
+    git gc --aggressive --prune=now
+    でリポジトリを最適化する
+    消した後は強制的にGitHubにpushする必要があり、git push -fを使う
+
+git log
+    今まで何をしたかを表示できる

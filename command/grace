@@ -1,0 +1,34 @@
+見方
+超簡単
+    xmgrace -nxy .xvg
+画像で出力
+    gracebat -nxy .xvg -hdevice PNG -printfile .png
+
+### options ###
+
+-nxy file
+    fileの中身が X Y1 Y2 Y3 ... となっていると指示する
+
+-world xmin ymin xmax ymax
+    軸の最大値と最小値を決める
+    ex) -world 0 0 300 3.5
+
+-fixed width height
+    図のサイズをwidth*heightにセットする
+    ex) -fixed 1600 1200
+
+-batch file
+    様々な情報をfile内に詰め込める
+
+-pexec "string"
+    batch以外にも簡単にstringで表記できるものもある
+    
+
+手間のかかる方法．．．
+    xmgraceを起動
+    単純には複数データを表示できない
+    Data -> Import -> ASCll
+    一番下のSlectionで対象データを指定
+    Load as -> Block data
+    OK
+    Y from columnを2, 3, 4...などにしてApplyを押すとデータが出る

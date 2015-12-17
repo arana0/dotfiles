@@ -24,7 +24,7 @@
 # User dependent .bashrc file
 
 # If not running interactively, don't do anything
-[[ "$-" != *i* ]] && return
+#[[ "$-" != *i* ]] && return
 
 # Shell Options
 #
@@ -197,23 +197,20 @@
 # 
 # alias cd=cd_func
 
-# lsのオプションはOSによって違うみたいなので、ここで設定しておく
-source ~/.localsetting/bashrc_local_start
-
-mkdir_data_inTrash(){
-	today=`date +%y%m%d`
-	if [ ! -e ~/.trash/$today ]; then
-		mkdir ~/.trash/$today
-	fi
-}
-
 #trash
 to_trash(){
-	mkdir_data_inTrash
 	today=`date +%y%m%d`
+	if [ ! -e ~/.trash/$today ]; then
+        mkdir ~/.trash/$today
+	fi
 	for file in $@
 	do
-	    mv $file ~/.trash/$today
+        newname=$file
+        while [ -e ~/.trash/$today/$newname ]
+        do
+            newname="${newname}x"
+        done
+        mv $file ~/.trash/$today/$newname
 	done
 }
 alias rm="to_trash"
@@ -223,16 +220,27 @@ rm_exclude(){
     to_trash "$targets"
 }
 
-cd_ls(){
-	cd "$1"
-	ls
-}
-alias cd="cd_ls"
+# macの場合はlsの動作が異なる
+if [[ ${OSTYPE} =~ ^darwin ]]; then
+    alias ls="ls -G"
+else
+    alias ls='ls --color=auto'
+fi
 
-alias vi='vim'
+cd_ls(){
+    cd "$1"
+    ls
+} 
+alias cd="cd_ls"
 alias ll='ls -l'
 alias la='ls -all'
+
+alias vi='vim'
 alias ..='cd ..'
 alias ...='cd ../..'
 
-source ~/.localsetting/bashrc_local_end
+find_grep(){
+    find . | xargs grep -s "$1"
+}
+
+source ~/.localsetting/bashrc_local
