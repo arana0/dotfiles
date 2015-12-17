@@ -197,6 +197,9 @@
 # 
 # alias cd=cd_func
 
+# lsのオプションはOSによって違うみたいなので、ここで設定しておく
+source ~/.localsetting/bashrc_local_start
+
 mkdir_data_inTrash(){
 	today=`date +%y%m%d`
 	if [ ! -e ~/.trash/$today ]; then
@@ -220,7 +223,6 @@ rm_exclude(){
     to_trash "$targets"
 }
 
-alias ls='ls --color=auto'
 cd_ls(){
 	cd "$1"
 	ls
@@ -233,4 +235,4 @@ alias la='ls -all'
 alias ..='cd ..'
 alias ...='cd ../..'
 
-source ~/.localsetting/bashrc_local
+source ~/.localsetting/bashrc_local_end
