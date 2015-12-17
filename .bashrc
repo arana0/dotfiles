@@ -243,4 +243,41 @@ find_grep(){
     find . | xargs grep -s "$1"
 }
 
+scp2tsu(){
+    if [ $# -eq 1 ]; then
+        scp -r "$1" 14M25023@login-t2.g.gsic.titech.ac.jp:~/
+    elif [ $# -eq 2 ]; then
+        scp -r "$1" 14M25023@login-t2.g.gsic.titech.ac.jp:~/$2
+    else
+        echo "argument error"
+    fi
+}
+tsu2scp(){
+    if [ $# -eq 1 ]; then
+        scp -r 14M25023@login-t2.g.gsic.titech.ac.jp:~/$1 .
+    elif [ $# -eq 2 ]; then
+        scp -r 14M25023@login-t2.g.gsic.titech.ac.jp:~/$1 $2
+    else
+        echo "argument error"
+    fi
+}
+scp2narai(){
+    if [ $# -eq 1 ]; then
+        scp -r "$1" 14M25023@login-t2.g.gsic.titech.ac.jp:/work0/t2gsakurai-lab/narai/
+    elif [ $# -eq 2 ]; then
+        scp -r "$1" 14M25023@login-t2.g.gsic.titech.ac.jp:/work0/t2gsakurai-lab/narai/$2
+    else
+        echo "argument error"
+    fi
+}
+narai2scp(){
+    if [ $# -eq 1 ]; then
+        scp -r 14M25023@login-t2.g.gsic.titech.ac.jp:/work0/t2gsakurai-lab/narai/$1 .
+    elif [ $# -eq 2 ]; then
+        scp -r 14M25023@login-t2.g.gsic.titech.ac.jp:/work0/t2gsakurai-lab/narai/$1 $2
+    else
+        echo "argument error"
+    fi
+}
+
 source ~/.localsetting/bashrc_local
